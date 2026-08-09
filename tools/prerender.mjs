@@ -26,7 +26,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = process.env.BASE || "http://localhost:8777/";
-const SITE = process.env.SITE || "https://example.com";   // for canonical/og
+const SITE = process.env.SITE || "https://trek-nepal-demo.vercel.app";  // canonical/og host
 
 /* pages that are prerendered as-is */
 const PAGES = [
@@ -354,4 +354,4 @@ ${BLOG.map(b => `- [${b.title}](${SITE}/blog/${b.slug}.html): ${b.lede}`).join("
 - Reviews and guide profiles on this site are clearly labelled samples, not real people.
 `);
 console.log(`\n  sitemap.xml (${urls.length} urls) + robots.txt + llms.txt`);
-console.log("\nDone. Set SITE=https://yourdomain.com before a real deploy.");
+console.log(`\nDone. Canonical host: ${SITE}  (override with SITE=... npm run build)`);

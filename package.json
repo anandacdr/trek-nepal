@@ -2,11 +2,12 @@
   "name": "trek-nepal",
   "version": "1.0.0",
   "private": true,
-  "description": "Static trekking site demo. The site itself has zero runtime dependencies — jsdom is used only by the prerender build step.",
+  "description": "Static trekking site demo. The site itself has zero runtime dependencies \u2014 jsdom is used only by the prerender build step.",
   "scripts": {
     "serve": "python3 -m http.server 8777",
     "prerender": "node tools/prerender.mjs",
-    "build": "echo 'Start the server first (npm run serve), then: npm run prerender'"
+    "build": "SITE=${SITE:-https://trek-nepal-demo.vercel.app} node tools/prerender.mjs",
+    "restore-slots": "node tools/restore-slots.mjs"
   },
   "devDependencies": {
     "jsdom": "^24.0.0"
