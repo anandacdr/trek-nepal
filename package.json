@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "python3 -m http.server 8777",
     "prerender": "node tools/prerender.mjs",
-    "build": "SITE=${SITE:-https://trek-nepal-demo.vercel.app} node tools/prerender.mjs",
+    "build": "SITE=${SITE:-https://walkthehimalaya.vercel.app} node tools/prerender.mjs",
     "restore-slots": "node tools/restore-slots.mjs"
   },
   "devDependencies": {

@@ -26,7 +26,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = process.env.BASE || "http://localhost:8777/";
-const SITE = process.env.SITE || "https://trek-nepal-demo.vercel.app";  // canonical/og host
+const SITE = process.env.SITE || "https://walkthehimalaya.vercel.app";  // canonical/og host
 
 /* pages that are prerendered as-is */
 const PAGES = [

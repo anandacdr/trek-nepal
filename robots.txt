@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://trek-nepal-demo.vercel.app/sitemap.xml
+Sitemap: https://walkthehimalaya.vercel.app/sitemap.xml
