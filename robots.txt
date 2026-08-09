@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anandacdr.github.io/trek-nepal/sitemap.xml
+Sitemap: https://trek-nepal-demo.vercel.app/sitemap.xml

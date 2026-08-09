@@ -5,25 +5,25 @@
 > Based in Kathmandu. Demo/concept site.
 
 ## What we run
-- [Everest Base Camp Trek](https://anandacdr.github.io/trek-nepal/treks/everest-base-camp-trek.html): 13 Nights · 14 Days, max altitude 5364 m, moderate, from $1,650. The classic route to the foot of the highest mountain on earth — Lukla, Namche, Tengboche, Dingboche and the long walk up the Khumbu Glacier.
-- [Luxury Trek to Namche Bazaar & Fly to Everest Base Camp by Helicopter](https://anandacdr.github.io/trek-nepal/treks/luxury-namche-heli-ebc.html): 8 Nights · 9 Days, max altitude 5364 m, moderate, from $3,780. Walk the beautiful lower Khumbu to Namche in comfort, then fly the hard part — a helicopter to Base Camp and a landing at Kala Patthar.
-- [Luxury Everest Base Camp Trek](https://anandacdr.github.io/trek-nepal/treks/luxury-everest-base-camp-trek.html): 10 Nights · 11 Days, max altitude 5545 m, moderate, from $3,880. The full walk to Base Camp, but with the best lodges on the trail, a lighter pack, and a helicopter lift out instead of the long walk back.
-- [Annapurna Base Camp Trek](https://anandacdr.github.io/trek-nepal/treks/annapurna-base-camp-trek.html): 11 Days, max altitude 4130 m, moderate, from $830. Into the Annapurna Sanctuary — a glacial amphitheatre ringed by peaks, reached through rhododendron forest and terraced Gurung villages.
-- [Ghorepani Poon Hill Trek](https://anandacdr.github.io/trek-nepal/treks/ghorepani-poon-hill-trek.html): 7 Nights · 8 Days, max altitude 3210 m, easy, from $620. The best short trek in Nepal. Four walking days through rhododendron forest to a hilltop sunrise over Dhaulagiri and the Annapurnas.
-- [Manaslu Circuit Trek](https://anandacdr.github.io/trek-nepal/treks/manaslu-circuit-trek.html): 15 Nights · 16 Days, max altitude 5106 m, challenging, from $1,390. A full circuit of the eighth-highest mountain on earth, over the Larkya La at 5,106 m. Restricted area, few trekkers, deep Tibetan culture.
-- [Upper Mustang Jeep Tour](https://anandacdr.github.io/trek-nepal/treks/upper-mustang-jeep-tour.html): 12 Nights · 13 Days, max altitude 3840 m, easy, from $2,020. Drive the old salt road into the former Kingdom of Lo — a Tibetan desert of red cliffs, cave monasteries and the walled city of Lo Manthang.
+- [Everest Base Camp Trek](https://trek-nepal-demo.vercel.app/treks/everest-base-camp-trek.html): 13 Nights · 14 Days, max altitude 5364 m, moderate, from $1,650. The classic route to the foot of the highest mountain on earth — Lukla, Namche, Tengboche, Dingboche and the long walk up the Khumbu Glacier.
+- [Luxury Trek to Namche Bazaar & Fly to Everest Base Camp by Helicopter](https://trek-nepal-demo.vercel.app/treks/luxury-namche-heli-ebc.html): 8 Nights · 9 Days, max altitude 5364 m, moderate, from $3,780. Walk the beautiful lower Khumbu to Namche in comfort, then fly the hard part — a helicopter to Base Camp and a landing at Kala Patthar.
+- [Luxury Everest Base Camp Trek](https://trek-nepal-demo.vercel.app/treks/luxury-everest-base-camp-trek.html): 10 Nights · 11 Days, max altitude 5545 m, moderate, from $3,880. The full walk to Base Camp, but with the best lodges on the trail, a lighter pack, and a helicopter lift out instead of the long walk back.
+- [Annapurna Base Camp Trek](https://trek-nepal-demo.vercel.app/treks/annapurna-base-camp-trek.html): 11 Days, max altitude 4130 m, moderate, from $830. Into the Annapurna Sanctuary — a glacial amphitheatre ringed by peaks, reached through rhododendron forest and terraced Gurung villages.
+- [Ghorepani Poon Hill Trek](https://trek-nepal-demo.vercel.app/treks/ghorepani-poon-hill-trek.html): 7 Nights · 8 Days, max altitude 3210 m, easy, from $620. The best short trek in Nepal. Four walking days through rhododendron forest to a hilltop sunrise over Dhaulagiri and the Annapurnas.
+- [Manaslu Circuit Trek](https://trek-nepal-demo.vercel.app/treks/manaslu-circuit-trek.html): 15 Nights · 16 Days, max altitude 5106 m, challenging, from $1,390. A full circuit of the eighth-highest mountain on earth, over the Larkya La at 5,106 m. Restricted area, few trekkers, deep Tibetan culture.
+- [Upper Mustang Jeep Tour](https://trek-nepal-demo.vercel.app/treks/upper-mustang-jeep-tour.html): 12 Nights · 13 Days, max altitude 3840 m, easy, from $2,020. Drive the old salt road into the former Kingdom of Lo — a Tibetan desert of red cliffs, cave monasteries and the walled city of Lo Manthang.
 
 ## Guides (evergreen, factual)
-- [Altitude and acclimatisation](https://anandacdr.github.io/trek-nepal/guides/altitude-and-acclimatisation.html): Altitude is the single biggest reason people don't reach Base Camp — and almost all of it is manageable if you go slowly and pay attention.
-- [What to actually pack](https://anandacdr.github.io/trek-nepal/guides/packing-list.html): A working kit list for a Nepal teahouse trek, what you can hire in Kathmandu, and the things people carry for two weeks and never use.
-- [The best time to trek in Nepal](https://anandacdr.github.io/trek-nepal/guides/best-time-to-trek.html): Two main seasons, two shoulder seasons, and one region that works when everywhere else is under cloud.
-- [Permits, fees and what a trek really costs](https://anandacdr.github.io/trek-nepal/guides/permits-and-costs.html): Which permits you need for each region, what they cost, and where the money actually goes on a guided trek.
+- [Altitude and acclimatisation](https://trek-nepal-demo.vercel.app/guides/altitude-and-acclimatisation.html): Altitude is the single biggest reason people don't reach Base Camp — and almost all of it is manageable if you go slowly and pay attention.
+- [What to actually pack](https://trek-nepal-demo.vercel.app/guides/packing-list.html): A working kit list for a Nepal teahouse trek, what you can hire in Kathmandu, and the things people carry for two weeks and never use.
+- [The best time to trek in Nepal](https://trek-nepal-demo.vercel.app/guides/best-time-to-trek.html): Two main seasons, two shoulder seasons, and one region that works when everywhere else is under cloud.
+- [Permits, fees and what a trek really costs](https://trek-nepal-demo.vercel.app/guides/permits-and-costs.html): Which permits you need for each region, what they cost, and where the money actually goes on a guided trek.
 
 ## Journal (stories from the trail)
-- [The porter who carries the door](https://anandacdr.github.io/trek-nepal/blog/the-porter-who-carries-the-door.html): Everything in the Khumbu arrived on someone's back. Once you notice that, you walk differently.
-- [Why we turned back at Lobuche](https://anandacdr.github.io/trek-nepal/blog/why-we-turned-back-at-lobuche.html): Base Camp was one day away and the whole group was strong. We went down anyway. Here's the reasoning.
-- [What a rest day in Namche actually looks like](https://anandacdr.github.io/trek-nepal/blog/a-rest-day-in-namche.html): It is not a day off. It is the day that decides whether the rest of your trek works.
-- [Dal bhat, twice a day, for two weeks](https://anandacdr.github.io/trek-nepal/blog/dal-bhat-twice-a-day.html): Why the same meal twice a day is the smartest thing on the menu — and what to order when you cannot face it again.
+- [The porter who carries the door](https://trek-nepal-demo.vercel.app/blog/the-porter-who-carries-the-door.html): Everything in the Khumbu arrived on someone's back. Once you notice that, you walk differently.
+- [Why we turned back at Lobuche](https://trek-nepal-demo.vercel.app/blog/why-we-turned-back-at-lobuche.html): Base Camp was one day away and the whole group was strong. We went down anyway. Here's the reasoning.
+- [What a rest day in Namche actually looks like](https://trek-nepal-demo.vercel.app/blog/a-rest-day-in-namche.html): It is not a day off. It is the day that decides whether the rest of your trek works.
+- [Dal bhat, twice a day, for two weeks](https://trek-nepal-demo.vercel.app/blog/dal-bhat-twice-a-day.html): Why the same meal twice a day is the smartest thing on the menu — and what to order when you cannot face it again.
 
 ## Key facts
 - Trekking seasons: spring (March–May) and autumn (September–November).
