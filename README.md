@@ -217,6 +217,25 @@ place. This is the one gotcha in the codebase.
 
 ---
 
+## Custom domain (trek.brandaid.au)
+
+The domain is registered with the Vercel project but needs one DNS record
+in Cloudflare. **Add it as `CNAME` → `cname.vercel-dns.com`, proxy OFF
+(grey cloud).** Cloudflare's orange-cloud proxy in front of Vercel causes
+SSL negotiation loops — the record must be "DNS only".
+
+| Type | Name | Content | Proxy |
+|---|---|---|---|
+| CNAME | `trek` | `cname.vercel-dns.com` | **DNS only (grey)** |
+
+An `A` record to `76.76.21.21` also works if you prefer.
+
+Then run `bash tools/finish-domain.sh` — it waits for DNS, rebuilds with the
+custom domain as canonical, deploys and re-points every alias.
+
+Do **not** point the apex or `www` at this project; those serve the live
+BrandAid site.
+
 ## Deploying
 
 Static — drop the folder on Netlify, Vercel, Cloudflare Pages or any host.
