@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://walkthehimalaya.vercel.app/sitemap.xml
+Sitemap: https://trek.brand-aid.au/sitemap.xml

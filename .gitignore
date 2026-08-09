@@ -11,3 +11,10 @@ node_modules/
 .vscode/
 .idea/
 .vercel
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.token
+.cf-token
