@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting… — Trek Nepal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script>
+  /* Legacy links used ?trek=<slug>. Each trek now has its own static page —
+     better for search and for sharing — so forward anyone arriving the old way.
+     NOTE: tools/prerender.mjs reads the *template* version of this file from
+     git/backup, not this redirect. Restore the template before re-running it. */
+  (function(){
+    var slug = new URLSearchParams(location.search).get("trek");
+    location.replace(slug ? slug + ".html" : "index.html");
+  })();
+</script>
+</head>
+<body class="has-solid-nav">
+  <main id="main">
+    <section class="oops">
+      <h1>Taking you to the trek…</h1>
+      <p>If nothing happens, <a href="index.html">browse all treks</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

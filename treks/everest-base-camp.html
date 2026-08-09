@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everest Base Camp — walk the trail | Trek Nepal</title>
+<meta name="description" content="An interactive climb from Lukla at 2,860 m to Everest Base Camp at 5,364 m. Scroll the route day by day, with real footage from Base Camp to the summit.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+/* ============ story-page only ============ */
+#grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.035;mix-blend-mode:multiply}
+
+/* altitude rail */
+#rail{position:fixed;left:0;top:0;height:100vh;width:var(--rail);z-index:40;
+  display:flex;align-items:center;justify-content:center;pointer-events:none}
+#rail .track{position:relative;width:2px;height:60vh;background:var(--line)}
+#rail .fill{position:absolute;left:0;bottom:0;width:100%;height:0%;
+  background:linear-gradient(to top,var(--teal),var(--ember));transition:height .12s linear}
+#rail .node{position:absolute;left:50%;transform:translate(-50%,50%);width:9px;height:9px;
+  border-radius:50%;background:var(--paper);border:1px solid var(--line-2);
+  transition:all .45s cubic-bezier(.2,.9,.3,1.3)}
+#rail .node.on{background:var(--ember);border-color:var(--ember);
+  box-shadow:0 0 0 4px rgba(193,68,14,.14)}
+#rail .alt{position:fixed;left:0;width:var(--rail);text-align:center;
+  font:600 13px/1.2 ui-monospace,Menlo,monospace;color:var(--ink)}
+#rail .alt small{display:block;font:600 10px/1.4 ui-sans-serif,sans-serif;letter-spacing:.16em;
+  color:var(--muted);text-transform:uppercase;margin-top:3px}
+#rail .cap{position:absolute;left:50%;transform:translateX(-50%);
+  font:600 10px/1 ui-monospace,monospace;color:var(--muted)}
+#rail .cap.top{top:-24px} #rail .cap.bot{bottom:-24px}
+#rail.on-dark .track{background:rgba(255,255,255,.24)}
+#rail.on-dark .alt{color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+#rail.on-dark .alt small,#rail.on-dark .cap{color:#b6c6d2}
+#rail.on-dark .node{background:var(--night);border-color:rgba(255,255,255,.4)}
+#rail .track,#rail .alt,#rail .alt small,#rail .cap,#rail .node{
+  transition:color .45s ease,background .45s ease,border-color .45s ease}
+
+/* mobile: swap the rail for a slim top progress bar */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;z-index:99;display:none;
+  background:linear-gradient(90deg,var(--teal),var(--ember))}
+
+/* hero */
+#hero{position:relative;height:100svh;min-height:560px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;background:var(--night)}
+#hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:saturate(.88) contrast(1.04) brightness(.88);will-change:transform}
+#hero .scrim{position:absolute;inset:0;z-index:2;background:
+  radial-gradient(ellipse at 50% 42%,rgba(8,16,22,.12) 0%,rgba(8,16,22,.62) 74%),
+  linear-gradient(180deg,rgba(8,16,22,.6) 0%,transparent 26%,transparent 58%,var(--paper) 100%)}
+#hero .content{position:relative;z-index:5;padding:0 var(--gut);max-width:880px}
+#hero h1{font-size:clamp(38px,8vw,92px);color:#fff;margin-top:18px}
+#hero h1 em{font-style:normal;display:block;color:#c7d6e0;font-size:.42em;
+  letter-spacing:.02em;margin-top:14px}
+#hero p{font-size:clamp(15px,1.9vw,19px);color:#dbe6ee;max-width:50ch;margin:24px auto 0;
+  text-shadow:0 1px 20px rgba(0,0,0,.6)}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;
+  font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.24em;text-transform:uppercase;
+  color:#41535f;text-align:center}
+.scroll-cue span{display:block;margin:12px auto 0;width:1px;height:34px;
+  background:linear-gradient(#41535f,transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.3);opacity:.4;transform-origin:top}
+  50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+.sound{position:absolute;right:var(--gut);bottom:26px;z-index:7;display:flex;align-items:center;
+  gap:10px;background:rgba(8,16,22,.34);border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(8px);padding:10px 15px;min-height:44px;cursor:pointer;color:#cfdce5;
+  font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.18em;text-transform:uppercase;
+  transition:color .3s ease,border-color .3s ease}
+.sound:hover{color:#fff;border-color:rgba(255,255,255,.45)}
+.sound .bars{display:flex;align-items:flex-end;gap:2px;height:13px}
+.sound .bars i{width:2px;background:currentColor;height:4px}
+.sound.on .bars i{animation:eq .9s ease-in-out infinite}
+.sound.on .bars i:nth-child(2){animation-delay:.15s}
+.sound.on .bars i:nth-child(3){animation-delay:.3s}
+.sound.on .bars i:nth-child(4){animation-delay:.45s}
+@keyframes eq{0%,100%{height:4px}50%{height:13px}}
+
+/* stages */
+.stage{padding:clamp(64px,15vh,180px) 0;position:relative}
+.stage-inner{max-width:var(--max);margin:0 auto;padding:0 var(--gut) 0 max(var(--rail),var(--gut));
+  display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,4.4vw,60px);align-items:center}
+.stage .body,.stage .card{opacity:0;transform:translateY(30px);
+  transition:opacity .9s ease,transform .9s var(--ease)}
+.stage .card{transform:translateY(30px) scale(.985);transition-delay:.12s}
+.stage.in .body,.stage.in .card{opacity:1;transform:none}
+.stage h2{font-size:clamp(30px,5vw,54px);margin:14px 0 0}
+.stage p.lede{color:var(--ink-2);max-width:44ch;margin:0}
+.day{font:600 11px/1 ui-monospace,monospace;letter-spacing:.2em;color:var(--muted);
+  text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:32px}
+.stats div{background:var(--card);padding:15px 16px}
+.stats dt{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 9px}
+.stats dd{margin:0;font:600 17px/1 ui-monospace,monospace}
+.card{position:relative;border:1px solid var(--line);background:var(--paper-2);
+  aspect-ratio:4/3;overflow:hidden;box-shadow:0 18px 44px -28px rgba(22,34,43,.5)}
+.card img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.4s var(--ease)}
+.card:hover img{transform:scale(1.04)}
+.card .lock{position:absolute;inset:0;z-index:4;background:rgba(10,18,24,.88);
+  backdrop-filter:blur(4px);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;color:#a9bcc9;font:600 10px/1 ui-sans-serif,sans-serif;
+  letter-spacing:.22em;text-transform:uppercase;transition:opacity .8s ease,visibility .8s}
+.stage.in .card .lock{opacity:0;visibility:hidden}
+.card .lock b{font:400 28px/1 ui-serif,Georgia,serif;letter-spacing:0;text-transform:none;color:#fff}
+.card figcaption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:14px 16px;
+  background:linear-gradient(transparent,rgba(10,18,24,.86));color:#fff;
+  font:600 10px/1.4 ui-sans-serif,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+
+/* bands */
+.band{position:relative;height:clamp(340px,70vh,620px);overflow:hidden;display:flex;
+  align-items:center;justify-content:center;text-align:center}
+.band .img{position:absolute;inset:-12% 0;background-size:cover;background-position:center;
+  filter:saturate(.8) contrast(1.04) brightness(.66);will-change:transform}
+.band::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,
+  var(--paper) 0%,transparent 20%,transparent 76%,var(--paper) 100%)}
+.band .say{position:relative;z-index:3;max-width:24ch;padding:0 var(--gut)}
+.band .say q{display:block;font:400 clamp(22px,3.6vw,42px)/1.28 ui-serif,Georgia,serif;
+  color:#fff;quotes:none;text-shadow:0 2px 34px rgba(0,0,0,.7)}
+.band .say .who{display:block;margin-top:18px;font:600 10px/1 ui-sans-serif,sans-serif;
+  letter-spacing:.24em;text-transform:uppercase;color:#cbd8e1}
+
+/* film */
+#film{background:var(--night);padding:clamp(64px,14vh,170px) 0;color:#eaf3f9}
+#film .head{max-width:58ch;margin-bottom:clamp(30px,5vh,52px)}
+#film h2{font-size:clamp(30px,4.8vw,56px);color:#fff;margin:14px 0 0}
+#film p{color:#93a7b5;margin:20px 0 0}
+#film .eyebrow{color:#ff8b5e}
+.bleed{width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(0px,3vw,44px)}
+.player{position:relative;background:#000;border:1px solid #1d2f3b;aspect-ratio:16/9;
+  overflow:hidden;cursor:pointer}
+.player video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  display:block;background:#000}
+.player.playing video{object-fit:contain}
+.player .cover{position:absolute;inset:0;z-index:3;background-size:cover;background-position:center;
+  display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s}
+.player .cover::after{content:"";position:absolute;inset:0;background:rgba(8,16,22,.4)}
+.player.playing .cover{opacity:0;visibility:hidden}
+.play{position:relative;z-index:2;width:clamp(62px,9vw,92px);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(255,255,255,.55);background:rgba(8,16,22,.28);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.3),background .35s ease,border-color .35s ease}
+.player:hover .play{transform:scale(1.08);background:var(--ember);border-color:var(--ember)}
+.play::before{content:"";border-left:clamp(15px,2vw,20px) solid #fff;
+  border-top:clamp(10px,1.3vw,13px) solid transparent;
+  border-bottom:clamp(10px,1.3vw,13px) solid transparent;margin-left:5px}
+.player .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(14px,2vw,22px);
+  background:linear-gradient(transparent,rgba(8,16,22,.9));display:flex;
+  justify-content:space-between;align-items:flex-end;gap:18px;transition:opacity .6s ease}
+.player.playing .meta{opacity:0;pointer-events:none}
+.player .meta b{display:block;font:400 clamp(14px,1.6vw,17px)/1.3 ui-serif,Georgia,serif;
+  color:#fff;margin-top:6px}
+.player .meta span{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.2em;
+  text-transform:uppercase;color:#93a7b5}
+.player .runtime{font:600 12px/1 ui-monospace,monospace;color:#93a7b5;white-space:nowrap}
+.ticks{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:1px;
+  background:#1d2f3b;border:1px solid #1d2f3b;border-top:0;max-width:1400px;margin:0 auto}
+.ticks div{background:#101d26;padding:15px 10px;text-align:center}
+.ticks dt{font:600 10px/1.3 ui-sans-serif,sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  color:#7b909f;margin:0 0 8px}
+.ticks dd{margin:0;font:600 13px/1 ui-monospace,monospace;color:#eaf3f9}
+.ticks div:last-child dd{color:#e0b45c}
+
+/* quote */
+#quote{padding:clamp(64px,16vh,190px) 0;overflow:hidden}
+#quote .in-w{max-width:960px;margin:0 auto;padding:0 var(--gut) 0 max(var(--rail),var(--gut))}
+#quote .inner{position:relative;opacity:0;transform:translateY(28px);
+  transition:opacity 1s ease,transform 1s var(--ease)}
+#quote.in .inner{opacity:1;transform:none}
+#quote .mark{position:absolute;top:-40px;left:-12px;z-index:0;
+  font:400 clamp(120px,18vw,200px)/1 ui-serif,Georgia,serif;color:var(--ember);opacity:.13;
+  pointer-events:none;user-select:none}
+#quote blockquote{position:relative;z-index:1;margin:0}
+#quote q{display:block;font:400 clamp(27px,5.4vw,62px)/1.16 ui-serif,Georgia,serif;
+  color:var(--ink);quotes:none;letter-spacing:-.022em}
+#quote .by{display:flex;align-items:center;gap:18px;margin-top:34px}
+#quote .bar{width:40px;height:1px;background:var(--ember);flex:none}
+#quote .who{font:600 12px/1.5 ui-sans-serif,sans-serif;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink)}
+#quote .who small{display:block;font:400 12px/1.6 ui-sans-serif,sans-serif;letter-spacing:.02em;
+  text-transform:none;color:var(--muted);margin-top:6px}
+
+/* gallery */
+#gallery{background:var(--paper-2);padding:clamp(64px,14vh,170px) 0}
+#gallery .g-w{padding:0 var(--gut) 0 max(var(--rail),var(--gut));max-width:var(--max);margin:0 auto}
+#gallery h2{font-size:clamp(28px,4.2vw,50px);margin:14px 0 0}
+#gallery .lede{color:var(--ink-2);max-width:52ch;margin:20px 0 44px}
+.mosaic{width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(12px,3vw,44px);
+  display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.shot{position:relative;overflow:hidden;background:var(--paper);border:1px solid var(--line);
+  cursor:zoom-in;opacity:0;transform:translateY(22px);
+  transition:opacity .8s ease,transform .8s var(--ease)}
+.mosaic.in .shot{opacity:1;transform:none}
+.shot:nth-child(2){transition-delay:.06s} .shot:nth-child(3){transition-delay:.12s}
+.shot:nth-child(4){transition-delay:.18s} .shot:nth-child(5){transition-delay:.24s}
+.shot:nth-child(6){transition-delay:.30s} .shot:nth-child(7){transition-delay:.36s}
+.shot:nth-child(8){transition-delay:.42s} .shot:nth-child(9){transition-delay:.48s}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--ease)}
+.shot:hover img{transform:scale(1.06)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px 14px 13px;
+  background:linear-gradient(transparent,rgba(10,18,24,.9));
+  font:600 10px/1.4 ui-sans-serif,sans-serif;letter-spacing:.18em;text-transform:uppercase;
+  color:#fff;opacity:0;transform:translateY(8px);transition:all .45s ease}
+.shot:hover figcaption{opacity:1;transform:none}
+.shot .mark{position:absolute;top:11px;left:13px;z-index:2;font:600 10px/1 ui-monospace,monospace;
+  color:#fff;opacity:.9;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.shot.w3{grid-column:span 3;aspect-ratio:16/9}
+.shot.w2{grid-column:span 2;aspect-ratio:4/3}
+.shot.w6{grid-column:span 6;aspect-ratio:32/9}
+#lb{position:fixed;inset:0;z-index:120;background:rgba(10,18,24,.95);display:flex;
+  align-items:center;justify-content:center;padding:5vh 4vw;opacity:0;visibility:hidden;
+  transition:opacity .35s ease,visibility .35s;cursor:zoom-out}
+#lb.on{opacity:1;visibility:visible}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;transform:scale(.97);
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
+#lb.on img{transform:none}
+#lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;
+  font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#93a7b5}
+#lb .x{position:absolute;top:16px;right:20px;color:#93a7b5;font:300 34px/1 ui-sans-serif,sans-serif}
+
+/* passport */
+#passport{padding:clamp(64px,14vh,170px) 0}
+#passport .p-w{padding:0 var(--gut) 0 max(var(--rail),var(--gut));max-width:var(--max);margin:0 auto}
+#passport h2{font-size:clamp(28px,4.2vw,48px);margin:14px 0 0}
+#passport .lede{color:var(--ink-2);max-width:50ch;margin:20px 0 42px}
+.stamps{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:18px}
+.stamp{aspect-ratio:1;border:1px dashed var(--line-2);border-radius:50%;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;
+  color:var(--muted);transform:scale(.84) rotate(-7deg);opacity:.75;
+  transition:all .7s cubic-bezier(.16,.9,.28,1.25)}
+.stamp.on{opacity:1;transform:scale(1) rotate(-4deg);color:var(--ember);border-color:var(--ember);
+  border-style:solid;box-shadow:inset 0 0 24px rgba(193,68,14,.07)}
+.stamp .n{font:600 10px/1.2 ui-sans-serif,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.stamp .m{font:600 15px/1.1 ui-monospace,monospace;margin-top:7px}
+.stamp .d{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.14em;margin-top:8px;opacity:.75}
+
+/* motivation */
+#motivate{background:var(--paper-2);padding:clamp(64px,14vh,170px) 0;text-align:center;
+  border-block:1px solid var(--line)}
+#motivate .lines{opacity:0;transform:translateY(24px);
+  transition:opacity 1s ease,transform 1s var(--ease)}
+#motivate.in .lines{opacity:1;transform:none}
+#motivate h2{font-size:clamp(28px,4.6vw,52px);margin:18px 0 0}
+#motivate .sub{color:var(--ink-2);font-size:clamp(15px,1.9vw,18px);max-width:46ch;margin:24px auto 0}
+#motivate .beat{display:inline-block;margin-top:36px;padding:16px 28px;border:1px solid var(--line-2);
+  background:var(--paper);font:600 12px/1 ui-monospace,monospace;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ember)}
+
+/* book strip */
+#bookstrip{padding:clamp(56px,10vh,120px) 0;text-align:center}
+#bookstrip h2{font-size:clamp(28px,4.4vw,52px);margin:16px 0 0}
+#bookstrip p{color:var(--ink-2);max-width:44ch;margin:20px auto 32px}
+.acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ---- responsive ---- */
+@media (max-width:1024px){ .mosaic{grid-template-columns:repeat(4,1fr)}
+  .shot.w3{grid-column:span 2} .shot.w2{grid-column:span 2} .shot.w6{grid-column:span 4} }
+@media (max-width:860px){
+  #rail{display:none} #bar{display:block}
+  .stage-inner{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:640px){
+  .mosaic{grid-template-columns:repeat(2,1fr);gap:8px}
+  .shot.w3,.shot.w2{grid-column:span 1;aspect-ratio:4/3}
+  .shot.w6{grid-column:span 2;aspect-ratio:16/9}
+  .shot figcaption{opacity:1;transform:none;font-size:10px;padding:11px}
+  .stats dd{font-size:15px} .stats div{padding:12px 11px}
+  .sound{right:12px;bottom:20px}
+  .acts .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .stage .body,.stage .card,.mosaic .shot,#quote .inner,#motivate .lines{opacity:1;transform:none}
+  #grain{display:none}
+}
+</style>
+<meta property="og:title" content="Everest Base Camp — walk the trail | Trek Nepal"><meta property="og:description" content="An interactive climb from Lukla at 2,860 m to Everest Base Camp at 5,364 m. Scroll the route day by day, with real footage from Base Camp to the summit."><meta property="og:type" content="website"><meta property="og:url" content="https://anandacdr.github.io/trek-nepal/treks/everest-base-camp.html"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://anandacdr.github.io/trek-nepal/treks/everest-base-camp.html"><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Everest Base Camp2,860 m → 5,364 m, on foot",
+   "item": "https://example.com/treks/everest-base-camp.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Everest Base Camp2,860 m → 5,364 m, on foot",
+   "item": "https://example.com/treks/everest-base-camp.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Everest Base Camp2,860 m → 5,364 m, on foot",
+   "item": "https://example.com/treks/everest-base-camp.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://anandacdr.github.io/trek-nepal/#org",
+ "name": "Trek Nepal",
+ "url": "https://anandacdr.github.io/trek-nepal/",
+ "logo": "https://anandacdr.github.io/trek-nepal/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://anandacdr.github.io/trek-nepal/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://anandacdr.github.io/trek-nepal/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Everest Base Camp2,860 m → 5,364 m, on foot",
+   "item": "https://anandacdr.github.io/trek-nepal/treks/everest-base-camp.html"
+  }
+ ]
+}</script></head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<nav id="nav" aria-label="Main">
+  <a class="brand" href="../index.html" aria-label="Trek Nepal — home">
+    <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+      <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+      <path d="M15.5 14.5 L18.4 19.4 L12.7 19.4 Z" fill="#b5400d" opacity=".55"></path>
+    </svg>
+    <span class="wm">TREK<span>NEPAL</span><small>Himalayan trekking &amp; tours</small></span>
+  </a>
+
+  <ul class="menu" id="menu">
+    <li class="m-lbl" aria-hidden="true">Menu</li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Treks <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop mega">
+        <div class="pad">
+          <div class="mgrid">
+            <div>
+              <h4>By region</h4>
+              
+    <a class="mi" href="../treks/index.html?region=everest">
+      <span class="mi-t">Everest &amp; Khumbu<em>3 trips</em></span>
+      <span class="mi-n">Base Camp, Namche, Kala Patthar</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=annapurna">
+      <span class="mi-t">Annapurna<em>2 trips</em></span>
+      <span class="mi-n">Sanctuary, Poon Hill, Ghandruk</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=manaslu">
+      <span class="mi-t">Manaslu<em>1 trip</em></span>
+      <span class="mi-n">Larkya La, restricted area</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=mustang">
+      <span class="mi-t">Upper Mustang<em>1 trip</em></span>
+      <span class="mi-n">Lo Manthang, sky caves</span>
+    </a>
+            </div>
+            <div>
+              <h4>By difficulty</h4>
+              <a class="mi" href="../treks/index.html?grade=easy">
+                <span class="mi-t">Easy<em>2 trips</em></span>
+                <span class="mi-n">Short days, low altitude</span></a>
+              <a class="mi" href="../treks/index.html?grade=moderate">
+                <span class="mi-t">Moderate<em>4 trips</em></span>
+                <span class="mi-n">Full days above 4,000 m</span></a>
+              <a class="mi" href="../treks/index.html?grade=challenging">
+                <span class="mi-t">Challenging<em>1 trip</em></span>
+                <span class="mi-n">High passes, remote country</span></a>
+              <a class="mi all" href="../treks/index.html">
+                <span class="mi-t">View all 7 treks <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+            </div>
+          </div>
+        </div>
+        
+        <a class="feat-card" href="../treks/everest-base-camp-trek.html">
+          <img src="../assets/img/treks/ebc.jpg" alt="" loading="lazy" width="1200" height="800">
+          <span class="fc-in">
+            <em>Most booked</em>
+            <b>Everest Base Camp Trek</b>
+            <span class="fc-m">13 Nights · 14 Days · from $1,650</span>
+          </span>
+        </a>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Luxury <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../treks/luxury-namche-heli-ebc.html">
+            <span class="mi-t">Helicopter tours<em></em></span>
+            <span class="mi-n">Fly to Base Camp, land at Kala Patthar</span></a></li>
+          <li><a href="../treks/luxury-everest-base-camp-trek.html">
+            <span class="mi-t">Luxury Everest trek<em></em></span>
+            <span class="mi-n">Best lodges, helicopter return</span></a></li>
+          <li><a href="../treks/upper-mustang-jeep-tour.html">
+            <span class="mi-t">Private jeep tours<em></em></span>
+            <span class="mi-n">Upper Mustang, no walking days</span></a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../guides/index.html" aria-expanded="false" aria-haspopup="true">Guides <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">
+            <span class="mi-t">Altitude and acclimatisation<em>7 min</em></span>
+            <span class="mi-n">Health</span></a></li><li><a href="../guides/packing-list.html">
+            <span class="mi-t">What to actually pack<em>9 min</em></span>
+            <span class="mi-n">Preparation</span></a></li><li><a href="../guides/best-time-to-trek.html">
+            <span class="mi-t">The best time to trek in Nepal<em>6 min</em></span>
+            <span class="mi-n">Planning</span></a></li><li><a href="../guides/permits-and-costs.html">
+            <span class="mi-t">Permits, fees and what a trek really costs<em>8 min</em></span>
+            <span class="mi-n">Money</span></a></li>
+          <li><a class="mi all" href="../treks/everest-base-camp.html">
+            <span class="mi-t">Walk Everest Base Camp <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <span class="mi-n">Interactive route guide</span></a></li>
+        </ul>
+      </div>
+    </li>
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+
+    <li class="m-cta"><a class="plan" href="../contact/index.html">Plan a trip</a></li>
+  </ul>
+
+  <div class="navtools">
+    <button class="icobtn" id="searchBtn" aria-label="Search treks" aria-expanded="false">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <a class="plan d-only" href="../contact/index.html">Plan a trip</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  </div>
+</nav>
+<div id="scrim" hidden=""></div>
+
+<div id="search" hidden="">
+  <div class="s-box" role="dialog" aria-modal="true" aria-label="Search treks">
+    <div class="s-top">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <input id="sInput" type="search" placeholder="Search treks — Everest, Poon Hill, easy…" autocomplete="off" aria-label="Search treks">
+      <button class="s-esc" id="sClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="s-res" id="sRes" role="listbox" aria-label="Results"></div>
+  </div>
+</div>
+
+<svg id="grain" aria-hidden="true">
+  <filter id="gn"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"></feTurbulence></filter>
+  <rect width="100%" height="100%" filter="url(#gn)"></rect>
+</svg>
+<div id="bar" aria-hidden="true" style="width: 0%;"></div>
+
+<div id="rail" aria-hidden="true" class="on-dark">
+  <div class="track">
+    <span class="cap top">5364m</span>
+    <div class="fill" id="fill" style="height: 0%;"></div>
+    <span class="cap bot">2860m</span>
+  <span class="node on" style="bottom: 0%;"></span><span class="node on" style="bottom: 23.162939297124602%;"></span><span class="node on" style="bottom: 40.215654952076676%;"></span><span class="node on" style="bottom: 61.90095846645367%;"></span><span class="node on" style="bottom: 83.06709265175719%;"></span><span class="node on" style="bottom: 100%;"></span></div>
+  <div class="alt" id="altReadout" style="top: -34px;"><span id="altNum">2,860</span>m<small>altitude</small></div>
+</div>
+
+<main id="main">
+
+<header id="hero">
+  <video class="bg" id="heroVid" autoplay="" muted="" loop="" playsinline="" preload="auto" poster="../assets/img/posters/hero-poster.jpg" aria-hidden="true" style="transform: translateY(0px) scale(1.06);">
+    <source src="../assets/video/hero-loop.mp4" type="video/mp4">
+  </video>
+  <div class="scrim"></div>
+  <div class="content">
+    <p class="eyebrow">Solukhumbu · Nepal · 12 days</p>
+    <h1>Everest Base Camp<em>2,860 m → 5,364 m, on foot</em></h1>
+    <p>Don't read the itinerary. Walk it. Scroll to climb 2,504 vertical metres from the Lukla airstrip to the foot of the highest mountain on earth — one day at a time.</p>
+  </div>
+  <button class="sound" id="soundBtn" aria-label="Toggle hero sound">
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span id="soundLbl">Sound off</span>
+  </button>
+  <div class="scroll-cue">Scroll to climb<span></span></div>
+</header>
+
+<section class="stage in" data-alt="2860" data-stamp="0">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 01 · 2,860 m</p><h2>Lukla</h2><div class="rule"></div>
+      <p class="lede">A 527-metre runway carved into a hillside at a 12° slope. The plane lands uphill because it has to. From here there are no roads — everything ahead moves on foot, on yak, or on a porter's back.</p>
+      <dl class="stats">
+        <div><dt>Distance</dt><dd>8 km</dd></div>
+        <div><dt>Gain</dt><dd>−250 m</dd></div>
+        <div><dt>Walking</dt><dd>3–4 hrs</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/lukla.jpg" alt="Trekkers unloading from a Twin Otter at Tenzing–Hillary Airport, Lukla" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 1</b>Reach it to unlock</div>
+      <figcaption>Tenzing–Hillary Airport · 2,860 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stage in" data-alt="3440" data-stamp="1">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 03 · 3,440 m</p><h2>Namche Bazaar</h2><div class="rule"></div>
+      <p class="lede">A horseshoe of stone houses stacked into a natural amphitheatre. You stop here two nights whether you feel like it or not — the body needs time to build red blood cells before it goes higher.</p>
+      <dl class="stats">
+        <div><dt>Distance</dt><dd>11 km</dd></div>
+        <div><dt>Gain</dt><dd>+830 m</dd></div>
+        <div><dt>Rest day</dt><dd>Yes</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/namche.jpg" alt="The painted rooftops of Namche Bazaar filling a natural bowl" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 3</b>Reach it to unlock</div>
+      <figcaption>Namche Bazaar · 3,440 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band">
+  <div class="img" data-band="" style="background-image: url(&quot;../assets/img/stills/band-cwm.jpg&quot;); transform: translateY(26px);"></div>
+  <div class="say">
+    <q>Everything above this line is carried. No roads, no wheels, no engines — only feet, yaks, and backs.</q>
+    <span class="who">Above the Khumbu</span>
+  </div>
+</section>
+
+<section class="stage in" data-alt="3867" data-stamp="2">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 05 · 3,867 m</p><h2>Tengboche</h2><div class="rule"></div>
+      <p class="lede">The largest gompa in the Khumbu, on a ridge with Ama Dablam standing directly behind it. Trekkers arrive at dusk for the monks' evening prayers. This is the last of the rhododendron forest.</p>
+      <dl class="stats">
+        <div><dt>Distance</dt><dd>10 km</dd></div>
+        <div><dt>Gain</dt><dd>+427 m</dd></div>
+        <div><dt>Walking</dt><dd>5 hrs</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/tengboche.jpg" alt="Stupa and prayer flags at Tengboche with Ama Dablam behind" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 5</b>Reach it to unlock</div>
+      <figcaption>Tengboche · 3,867 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stage in" data-alt="4410" data-stamp="3">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 07 · 4,410 m</p><h2>Dingboche</h2><div class="rule"></div>
+      <p class="lede">Above the treeline. Stone-walled potato fields, wind that never stops, and roughly 60% of the oxygen you had at sea level. Most groups climb Nangkartshang at 5,083 m during the day and come back down to sleep.</p>
+      <dl class="stats">
+        <div><dt>Distance</dt><dd>12 km</dd></div>
+        <div><dt>Gain</dt><dd>+543 m</dd></div>
+        <div><dt>Oxygen</dt><dd>~60%</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/dingboche.jpg" alt="Dingboche's stone-walled fields and lodges below Lhotse" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 7</b>Reach it to unlock</div>
+      <figcaption>Dingboche · 4,410 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band">
+  <div class="img" data-band="" style="background-image: url(&quot;../assets/img/stills/band-climbers.jpg&quot;); transform: translateY(26px);"></div>
+  <div class="say">
+    <q>The trail is never empty. Ahead of you and behind you, a thin line of people is doing exactly the same thing, one breath at a time.</q>
+    <span class="who">The line to the top</span>
+  </div>
+</section>
+
+<section class="stage in" data-alt="4940" data-stamp="4">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 09 · 4,940 m</p><h2>Gorak Shep</h2><div class="rule"></div>
+      <p class="lede">A frozen lakebed with four lodges on it, beside the Khumbu Glacier. You drop your pack here, walk the final stretch to Base Camp, and come back to the same room to sleep — the highest night of the trek.</p>
+      <dl class="stats">
+        <div><dt>Distance</dt><dd>13 km</dd></div>
+        <div><dt>Gain</dt><dd>+530 m</dd></div>
+        <div><dt>Lodges</dt><dd>4</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/gorakshep.jpg" alt="The sandy frozen lakebed at Gorak Shep beneath Nuptse" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 9</b>Reach it to unlock</div>
+      <figcaption>Gorak Shep · 4,940 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="stage in" data-alt="5364" data-stamp="5">
+  <div class="stage-inner">
+    <div class="body">
+      <p class="day">Day 10 · 5,364 m</p><h2>Everest Base Camp</h2><div class="rule"></div>
+      <p class="lede">Prayer flags, a boulder with the altitude painted on it, and the Khumbu Icefall grinding downhill behind you. You can't see the summit from here — Nuptse hides it. Nobody minds.</p>
+      <dl class="stats">
+        <div><dt>Altitude</dt><dd>5,364 m</dd></div>
+        <div><dt>Total gain</dt><dd>+2,504 m</dd></div>
+        <div><dt>On foot</dt><dd>130 km</dd></div>
+      </dl>
+    </div>
+    <figure class="card">
+      <img src="../assets/img/treks/ebc.jpg" alt="Ice pinnacles of the Khumbu Glacier at Everest Base Camp" loading="lazy" width="1200" height="800">
+      <div class="lock"><b>Day 10</b>Reach it to unlock</div>
+      <figcaption>Everest Base Camp · 5,364 m</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="film">
+  <div class="wrap" style="padding-left:max(var(--rail),var(--gut));max-width:var(--max)">
+    <div class="head">
+      <p class="eyebrow">The 3,484 metres you don't walk</p>
+      <h2>Everything above Base Camp.</h2>
+      <p>Your trek ends on that moraine at 5,364 m. The mountain keeps going for another two vertical miles — through the Khumbu Icefall, up the Western Cwm, past four high camps and the Hillary Step, to a summit roughly the size of a dining table.</p>
+    </div>
+  </div>
+  <div class="bleed">
+    <div class="player" id="player">
+      <video id="filmVid" preload="none" playsinline="" controls="" poster="../assets/img/posters/film-poster.jpg">
+        <source src="../assets/video/everest-ascent.mp4" type="video/mp4">
+        Your browser doesn't support embedded video.
+      </video>
+      <div class="cover" style="background-image:url('../assets/img/posters/film-poster.jpg')">
+        <div class="play" role="button" tabindex="0" aria-label="Play the ascent film"></div>
+      </div>
+      <div class="meta">
+        <div><span>Aerial ascent · full film</span><b>Base Camp to the Summit of Everest</b></div>
+        <div class="runtime">4:01</div>
+      </div>
+    </div>
+    <dl class="ticks">
+      <div><dt>Base Camp</dt><dd>5,300 m</dd></div>
+      <div><dt>Camp 1</dt><dd>6,000 m</dd></div>
+      <div><dt>Camp 2</dt><dd>6,500 m</dd></div>
+      <div><dt>Camp 3</dt><dd>7,200 m</dd></div>
+      <div><dt>Camp 4</dt><dd>7,950 m</dd></div>
+      <div><dt>Balcony</dt><dd>8,400 m</dd></div>
+      <div><dt>Summit</dt><dd>8,848 m</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="quote" class="in">
+  <div class="in-w">
+    <div class="inner">
+      <span class="mark" aria-hidden="true">“</span>
+      <blockquote>
+        <q>Giving up is not in the blood.</q>
+        <div class="by">
+          <span class="bar"></span>
+          <span class="who">Nirmal “Nims” Purja
+            <small>Nepali mountaineer. Climbed all fourteen 8,000-metre peaks in six months and six days — a record that had stood at seven years.</small>
+          </span>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="g-w">
+    <p class="eyebrow">Stills from the ascent</p>
+    <h2>Nine frames, five vertical kilometres.</h2>
+    <p class="lede">Pulled from the film above — the icefall, the Cwm, the high camps, the summit ridge. Click any frame to open it full size.</p>
+  </div>
+  <div class="mosaic in" id="mosaic">
+    <figure class="shot w3"><span class="mark">01</span><img src="../assets/img/stills/g1.jpg" alt="Seracs in the Khumbu Icefall" loading="lazy" width="1200" height="800"><figcaption>The Khumbu Icefall</figcaption></figure>
+    <figure class="shot w3"><span class="mark">02</span><img src="../assets/img/stills/g2.jpg" alt="Ice towers under a deep blue sky" loading="lazy" width="1200" height="800"><figcaption>Ice towers below Camp 1</figcaption></figure>
+    <figure class="shot w2"><span class="mark">03</span><img src="../assets/img/stills/g3.jpg" alt="Entrance to the Western Cwm" loading="lazy" width="1200" height="800"><figcaption>Into the Western Cwm</figcaption></figure>
+    <figure class="shot w2"><span class="mark">04</span><img src="../assets/img/stills/g4.jpg" alt="A single figure crossing the glacier" loading="lazy" width="1200" height="800"><figcaption>One figure, whole glacier</figcaption></figure>
+    <figure class="shot w2"><span class="mark">05</span><img src="../assets/img/stills/g5.jpg" alt="Tents of a high camp on the ice" loading="lazy" width="1200" height="800"><figcaption>A high camp on the ice</figcaption></figure>
+    <figure class="shot w6"><span class="mark">06</span><img src="../assets/img/stills/g6.jpg" alt="A roped line of climbers on the glacier" loading="lazy" width="1200" height="800"><figcaption>The roped line</figcaption></figure>
+    <figure class="shot w2"><span class="mark">07</span><img src="../assets/img/stills/g7.jpg" alt="Crevasse field below the high camps" loading="lazy" width="1200" height="800"><figcaption>Crevasse field</figcaption></figure>
+    <figure class="shot w2"><span class="mark">08</span><img src="../assets/img/stills/g8.jpg" alt="Exposed rock on the upper mountain" loading="lazy" width="1200" height="800"><figcaption>The rocky crux</figcaption></figure>
+    <figure class="shot w2"><span class="mark">09</span><img src="../assets/img/stills/g9.jpg" alt="The final ridge toward the summit" loading="lazy" width="1200" height="800"><figcaption>The summit ridge</figcaption></figure>
+  </div>
+</section>
+
+<section id="passport">
+  <div class="p-w">
+    <p class="eyebrow">Your trek passport</p>
+    <h2>Six stamps. One trail.</h2>
+    <p class="lede">Every checkpoint you passed on the way down this page. Scroll back up and you'll walk it again — the mountain doesn't move.</p>
+    <div class="stamps" id="stamps">
+      <div class="stamp on"><span class="n">Lukla</span><span class="m">2,860m</span><span class="d">Day 01</span></div>
+      <div class="stamp on"><span class="n">Namche</span><span class="m">3,440m</span><span class="d">Day 03</span></div>
+      <div class="stamp on"><span class="n">Tengboche</span><span class="m">3,867m</span><span class="d">Day 05</span></div>
+      <div class="stamp on"><span class="n">Dingboche</span><span class="m">4,410m</span><span class="d">Day 07</span></div>
+      <div class="stamp on"><span class="n">Gorak Shep</span><span class="m">4,940m</span><span class="d">Day 09</span></div>
+      <div class="stamp on"><span class="n">Base Camp</span><span class="m">5,364m</span><span class="d">Day 10</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="img" data-band="" style="background-image: url(&quot;../assets/img/stills/band-summit.jpg&quot;); transform: translateY(26px);"></div>
+  <div class="say">
+    <q>You will not stand up there. That's fine — almost nobody does. You'll stand at the bottom of it, which is further than most people ever get.</q>
+    <span class="who">8,848 m · Sagarmāthā</span>
+  </div>
+</section>
+
+<section id="motivate" class="in">
+  <div class="wrap">
+    <div class="lines">
+      <p class="eyebrow">One foot, then the other</p>
+      <h2>The mountain doesn't ask if you're an athlete.</h2>
+      <p class="sub">It asks whether you'll put one foot down, then the next, for nine days — slowly enough to breathe, stubbornly enough to keep going. Almost nobody who reaches Base Camp is exceptional. They just didn't stop.</p>
+      <span class="beat">You start at 2,860 m · Day one</span>
+    </div>
+  </div>
+</section>
+
+<section id="bookstrip">
+  <div class="wrap">
+    <p class="eyebrow">Departures Mar–May · Sep–Nov</p>
+    <h2>Now walk it for real.</h2>
+    <p>13 nights, 14 days from Kathmandu. Licensed Sherpa guides, teahouse lodging, every permit handled.</p>
+    <div class="acts">
+      <a class="btn" href="everest-base-camp-trek.html">Dates &amp; price — $1,650</a>
+      <a class="btn ghost" href="index.html">Compare other treks</a>
+    </div>
+  </div>
+</section>
+
+<section id="credits">
+  <div class="wrap-wide">
+    <h3>Image credits</h3>
+    <ul>
+      <li><b>Lukla</b> — "Deplaning at Tenzing-Hillary airport" by Jaccoob23, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Namche Bazaar</b> — "Namche Bazaar, Mountains, Nepal" by Vyacheslav Argenberg, CC BY 4.0, via Wikimedia Commons</li>
+      <li><b>Tengboche</b> — "Tengboche-74-Lhotse und Ama Dablam" by Gerd Eichmann, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Dingboche</b> — "Dingboche Lhotse" by Superikonoskop, CC BY-SA 3.0, via Wikimedia Commons</li>
+      <li><b>Gorak Shep</b> — "Gorak Shep-20-Everest-Lhotse-Nuptse" by Gerd Eichmann, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Everest Base Camp</b> — "Gorak Shep to Everest Base Camp-60, Khumbu Glacier" by Gerd Eichmann, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Annapurna Base Camp</b> — "Annapurna Base Camp Trek" by Stefanos Nikologianis, CC BY 2.0, via Wikimedia Commons</li>
+      <li><b>Poon Hill</b> — "Poohill Sunrise" by Kondephy, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Manaslu Circuit</b> — "Samdo village, Manaslu circuit trek" by Shivagautam1, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Upper Mustang</b> — "Lomanthang Upper Mustang 2023" by Nabin K. Sapkota, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Porter on the ridge</b> — "Luza, Machhermo, Sherpa, Nepal" by Vyacheslav Argenberg, CC BY 4.0, via Wikimedia Commons</li>
+      <li><b>Porter resting</b> — "Luza, Machhermo, Sherpa boy, Nepal" by Vyacheslav Argenberg, CC BY 4.0, via Wikimedia Commons</li>
+      <li><b>Woman with doko basket</b> — "Pangboche, Sherpa senior woman, Nepal" by Vyacheslav Argenberg, CC BY 4.0, via Wikimedia Commons</li>
+      <li><b>Village street</b> — "Pheriche, Sherpas, Nepal, Himalayas" by Vyacheslav Argenberg, CC BY 4.0, via Wikimedia Commons</li>
+      <li><b>Porters at the lodge</b> — "Kusum porters" by Sgroey, CC BY-SA 4.0, via Wikimedia Commons</li>
+      <li><b>Video, bands &amp; gallery stills</b> — aerial footage supplied by client (DJI). Demo use only; licensed or original footage required before publication.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Enlarged frame">
+  <span class="x" aria-hidden="true">×</span>
+  <img id="lbImg" alt="" width="1200" height="800">
+  <div class="cap" id="lbCap"></div>
+</div>
+
+
+<footer id="foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="f-brand">
+        <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true" width="40" height="40">
+          <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+          <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+        </svg>
+        <p>Small-group trekking in Nepal, led by licensed guides from the
+           regions we walk through. Permits, lodging and porters included.</p>
+        <a class="btn light" href="../contact/index.html">Plan a trip <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+      <div>
+        <h4>Treks</h4>
+        <ul>
+          <li><a href="../treks/everest-base-camp-trek.html">Everest Base Camp Trek</a></li><li><a href="../treks/luxury-namche-heli-ebc.html">Luxury Namche Trek &amp; EBC Helicopter</a></li><li><a href="../treks/luxury-everest-base-camp-trek.html">Luxury Everest Base Camp Trek</a></li><li><a href="../treks/annapurna-base-camp-trek.html">Annapurna Base Camp Trek</a></li><li><a href="../treks/ghorepani-poon-hill-trek.html">Ghorepani Poon Hill Trek</a></li>
+          <li><a href="../treks/index.html">All 7 treks</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">Altitude and acclimatisation</a></li><li><a href="../guides/packing-list.html">What to actually pack</a></li><li><a href="../guides/best-time-to-trek.html">The best time to trek in Nepal</a></li><li><a href="../guides/permits-and-costs.html">Permits, fees and what a trek really costs</a></li>
+          <li><a href="../treks/everest-base-camp.html">Walk Everest Base Camp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about/index.html">About us</a></li>
+          <li><a href="../about/responsible-travel.html">Responsible travel</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+          <li><a href="../legal/terms.html">Booking terms</a></li>
+          <li><a href="../legal/privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>Thamel, Kathmandu, Nepal</li>
+        </ul>
+        <h4 style="margin-top:24px">Seasons</h4>
+        <ul>
+          <li>Spring · March – May</li>
+          <li>Autumn · September – November</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year="">2026</span> Trek Nepal — demo concept by BrandAid. Not an operating travel company.</span>
+      <span>Photography credited on the trek guide · CC BY / CC BY-SA</span>
+    </div>
+  </div>
+</footer>
+
+<script>window.SITE_PREFIX = "../";</script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+(function(){
+  const stages  = [...document.querySelectorAll('.stage')];
+  const stamps  = [...document.querySelectorAll('.stamp')];
+  const bands   = [...document.querySelectorAll('[data-band]')];
+  const nodes   = [];
+  const rail    = document.getElementById('rail');
+  const bar     = document.getElementById('bar');
+  const track   = document.querySelector('#rail .track');
+  const fill    = document.getElementById('fill');
+  const altNum  = document.getElementById('altNum');
+  const readout = document.getElementById('altReadout');
+  const heroVid = document.getElementById('heroVid');
+  const film    = document.getElementById('film');
+  const calm    = matchMedia('(prefers-reduced-motion: reduce)');
+  const MIN = 2860, MAX = 5364;
+
+  track.querySelectorAll(".node").forEach(n => n.remove());   // idempotent re-render
+  stages.forEach(s=>{
+    const pct = (+s.dataset.alt - MIN) / (MAX - MIN);
+    const n = document.createElement('span');
+    n.className = 'node'; n.style.bottom = (pct*100) + '%';
+    track.appendChild(n); nodes.push(n);
+  });
+
+  const hasIO = 'IntersectionObserver' in window;
+
+  if(!hasIO){
+    // very old browser: reveal everything rather than stranding it at opacity:0
+    stages.forEach(s => s.classList.add('in'));
+    stamps.forEach(s => s.classList.add('on'));
+    nodes.forEach(n => n.classList.add('on'));
+    document.getElementById('mosaic').classList.add('in');
+    ['quote','motivate'].forEach(id => document.getElementById(id).classList.add('in'));
+  } else {
+    const stageIO = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(!e.isIntersecting) return;
+        e.target.classList.add('in');
+        const i = stages.indexOf(e.target);
+        nodes[i].classList.add('on');
+        stamps[i].classList.add('on');
+      });
+    }, {threshold:.3});
+    stages.forEach(s => stageIO.observe(s));
+  }
+
+  let ticking = false;
+  function frame(){
+    ticking = false;
+    const y = scrollY, vh = innerHeight;
+    const h = document.body.scrollHeight - vh;
+    const p = Math.min(1, Math.max(0, y / (h || 1)));
+
+    fill.style.height = (p*100) + '%';
+    bar.style.width = (p*100) + '%';
+    altNum.textContent = Math.round(MIN + (MAX-MIN)*p).toLocaleString();
+
+    const r = track.getBoundingClientRect();
+    readout.style.top = (r.bottom - r.height*p - 34) + 'px';
+
+    if(y < vh) heroVid.style.transform = 'translateY(' + (y*0.32) + 'px) scale(1.06)';
+
+    const fb = film.getBoundingClientRect();
+    rail.classList.toggle('on-dark', (y < vh*0.82) || (fb.top < vh/2 && fb.bottom > vh/2));
+
+    bands.forEach(b=>{
+      const box = b.parentElement.getBoundingClientRect();
+      if(box.bottom < 0 || box.top > vh) return;
+      b.style.transform = 'translateY(' + (((box.top + box.height/2 - vh/2)/vh) * -52) + 'px)';
+    });
+  }
+  addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }, {passive:true});
+  addEventListener('resize', frame);
+  frame();
+
+  if(calm.matches){ heroVid.removeAttribute('autoplay'); heroVid.pause(); }
+  if(hasIO) new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(calm.matches) return;
+      if(e.isIntersecting) heroVid.play().catch(()=>{}); else heroVid.pause();
+    });
+  }, {threshold:.05}).observe(heroVid);
+
+  const sBtn = document.getElementById('soundBtn');
+  const sLbl = document.getElementById('soundLbl');
+  sBtn.addEventListener('click', ()=>{
+    heroVid.muted = !heroVid.muted;
+    sBtn.classList.toggle('on', !heroVid.muted);
+    sLbl.textContent = heroVid.muted ? 'Sound off' : 'Sound on';
+    if(!heroVid.muted) heroVid.play().catch(()=>{});
+  });
+
+  const player = document.getElementById('player');
+  const fVid   = document.getElementById('filmVid');
+  function startFilm(){
+    if(player.classList.contains('playing')) return;
+    player.classList.add('playing');
+    heroVid.muted = true; sBtn.classList.remove('on'); sLbl.textContent = 'Sound off';
+    fVid.play().catch(()=>{});
+  }
+  player.addEventListener('click', startFilm);
+  player.querySelector('.play').addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); startFilm(); }
+  });
+  if(hasIO) new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(!e.isIntersecting && !fVid.paused) fVid.pause(); });
+  }, {threshold:.25}).observe(player);
+
+  const mosaic = document.getElementById('mosaic');
+  if(hasIO){
+    new IntersectionObserver((es,obs)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ mosaic.classList.add('in'); obs.disconnect(); } });
+    }, {threshold:.1}).observe(mosaic);
+
+    const rev = new IntersectionObserver((es,obs)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, {threshold:.3});
+    ['quote','motivate'].forEach(id => rev.observe(document.getElementById(id)));
+  }
+
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
+        lbCap = document.getElementById('lbCap');
+  function closeLb(){ lb.classList.remove('on'); document.body.style.overflow = ''; }
+  mosaic.addEventListener('click', e=>{
+    const shot = e.target.closest('.shot'); if(!shot) return;
+    const img = shot.querySelector('img');
+    lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+    lbCap.textContent = shot.querySelector('figcaption').textContent;
+    lb.classList.add('on'); document.body.style.overflow = 'hidden';
+  });
+  lb.addEventListener('click', closeLb);
+  addEventListener('keydown', e=>{ if(e.key === 'Escape' && lb.classList.contains('on')) closeLb(); });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

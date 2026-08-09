@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All trekking packages — Trek Nepal</title>
+<meta name="description" content="Every Trek Nepal package: Everest Base Camp, Annapurna, Poon Hill, Manaslu Circuit and Upper Mustang. Filter by region, difficulty and duration.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+.filters{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-end;
+  padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.fgroup{display:flex;flex-direction:column;gap:10px}
+.fgroup h3{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line-2);background:transparent;cursor:pointer;
+  padding:10px 17px;min-height:40px;border-radius:999px;color:var(--ink-2);
+  font:600 11px/1 ui-sans-serif,sans-serif;letter-spacing:.1em;text-transform:uppercase;
+  transition:all .25s ease}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.count{margin-left:auto;font:600 11px/1 ui-sans-serif,sans-serif;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);padding-bottom:12px}
+.empty{padding:70px 0;text-align:center;color:var(--muted)}
+.empty h3{font-size:24px;color:var(--ink);margin-bottom:10px}
+@media (max-width:640px){ .count{margin-left:0} .filters{gap:18px} }
+.sortbtn{border:0;background:transparent;cursor:pointer;padding:0;color:inherit;font:inherit;
+  display:inline-flex;align-items:center;gap:6px;min-height:36px;transition:color .2s ease}
+.sortbtn:hover{color:var(--ink)}
+.sortbtn.on{color:var(--ember)}
+.sortbtn::after{content:"\2195";opacity:.4;font-size:11px}
+.sortbtn.on[aria-sort="ascending"]::after{content:"\2191";opacity:1}
+.sortbtn.on[aria-sort="descending"]::after{content:"\2193";opacity:1}
+</style>
+<meta property="og:title" content="All trekking packages — Trek Nepal"><meta property="og:description" content="Every Trek Nepal package: Everest Base Camp, Annapurna, Poon Hill, Manaslu Circuit and Upper Mustang. Filter by region, difficulty and duration."><meta property="og:type" content="website"><meta property="og:url" content="https://anandacdr.github.io/trek-nepal/treks/index.html"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://anandacdr.github.io/trek-nepal/treks/index.html"><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Trekking packages in Nepal.",
+   "item": "https://example.com/treks/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Trekking packages in Nepal.",
+   "item": "https://example.com/treks/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://example.com/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Trekking packages in Nepal.",
+   "item": "https://example.com/treks/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://anandacdr.github.io/trek-nepal/#org",
+ "name": "Trek Nepal",
+ "url": "https://anandacdr.github.io/trek-nepal/",
+ "logo": "https://anandacdr.github.io/trek-nepal/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://anandacdr.github.io/trek-nepal/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Treks",
+   "item": "https://anandacdr.github.io/trek-nepal/treks/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Trekking packages in Nepal.",
+   "item": "https://anandacdr.github.io/trek-nepal/treks/index.html"
+  }
+ ]
+}</script></head>
+<body class="has-solid-nav">
+
+<a class="skip" href="#main">Skip to content</a>
+<nav id="nav" aria-label="Main">
+  <a class="brand" href="../index.html" aria-label="Trek Nepal — home">
+    <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+      <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+      <path d="M15.5 14.5 L18.4 19.4 L12.7 19.4 Z" fill="#b5400d" opacity=".55"></path>
+    </svg>
+    <span class="wm">TREK<span>NEPAL</span><small>Himalayan trekking &amp; tours</small></span>
+  </a>
+
+  <ul class="menu" id="menu">
+    <li class="m-lbl" aria-hidden="true">Menu</li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Treks <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop mega">
+        <div class="pad">
+          <div class="mgrid">
+            <div>
+              <h4>By region</h4>
+              
+    <a class="mi" href="../treks/index.html?region=everest">
+      <span class="mi-t">Everest &amp; Khumbu<em>3 trips</em></span>
+      <span class="mi-n">Base Camp, Namche, Kala Patthar</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=annapurna">
+      <span class="mi-t">Annapurna<em>2 trips</em></span>
+      <span class="mi-n">Sanctuary, Poon Hill, Ghandruk</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=manaslu">
+      <span class="mi-t">Manaslu<em>1 trip</em></span>
+      <span class="mi-n">Larkya La, restricted area</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=mustang">
+      <span class="mi-t">Upper Mustang<em>1 trip</em></span>
+      <span class="mi-n">Lo Manthang, sky caves</span>
+    </a>
+            </div>
+            <div>
+              <h4>By difficulty</h4>
+              <a class="mi" href="../treks/index.html?grade=easy">
+                <span class="mi-t">Easy<em>2 trips</em></span>
+                <span class="mi-n">Short days, low altitude</span></a>
+              <a class="mi" href="../treks/index.html?grade=moderate">
+                <span class="mi-t">Moderate<em>4 trips</em></span>
+                <span class="mi-n">Full days above 4,000 m</span></a>
+              <a class="mi" href="../treks/index.html?grade=challenging">
+                <span class="mi-t">Challenging<em>1 trip</em></span>
+                <span class="mi-n">High passes, remote country</span></a>
+              <a class="mi all" href="../treks/index.html">
+                <span class="mi-t">View all 7 treks <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+            </div>
+          </div>
+        </div>
+        
+        <a class="feat-card" href="../treks/everest-base-camp-trek.html">
+          <img src="../assets/img/treks/ebc.jpg" alt="" loading="lazy" width="1200" height="800">
+          <span class="fc-in">
+            <em>Most booked</em>
+            <b>Everest Base Camp Trek</b>
+            <span class="fc-m">13 Nights · 14 Days · from $1,650</span>
+          </span>
+        </a>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Luxury <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../treks/luxury-namche-heli-ebc.html">
+            <span class="mi-t">Helicopter tours<em></em></span>
+            <span class="mi-n">Fly to Base Camp, land at Kala Patthar</span></a></li>
+          <li><a href="../treks/luxury-everest-base-camp-trek.html">
+            <span class="mi-t">Luxury Everest trek<em></em></span>
+            <span class="mi-n">Best lodges, helicopter return</span></a></li>
+          <li><a href="../treks/upper-mustang-jeep-tour.html">
+            <span class="mi-t">Private jeep tours<em></em></span>
+            <span class="mi-n">Upper Mustang, no walking days</span></a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../guides/index.html" aria-expanded="false" aria-haspopup="true">Guides <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">
+            <span class="mi-t">Altitude and acclimatisation<em>7 min</em></span>
+            <span class="mi-n">Health</span></a></li><li><a href="../guides/packing-list.html">
+            <span class="mi-t">What to actually pack<em>9 min</em></span>
+            <span class="mi-n">Preparation</span></a></li><li><a href="../guides/best-time-to-trek.html">
+            <span class="mi-t">The best time to trek in Nepal<em>6 min</em></span>
+            <span class="mi-n">Planning</span></a></li><li><a href="../guides/permits-and-costs.html">
+            <span class="mi-t">Permits, fees and what a trek really costs<em>8 min</em></span>
+            <span class="mi-n">Money</span></a></li>
+          <li><a class="mi all" href="../treks/everest-base-camp.html">
+            <span class="mi-t">Walk Everest Base Camp <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <span class="mi-n">Interactive route guide</span></a></li>
+        </ul>
+      </div>
+    </li>
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../contact/index.html">Contact</a></li>
+
+    <li class="m-cta"><a class="plan" href="../contact/index.html">Plan a trip</a></li>
+  </ul>
+
+  <div class="navtools">
+    <button class="icobtn" id="searchBtn" aria-label="Search treks" aria-expanded="false">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <a class="plan d-only" href="../contact/index.html">Plan a trip</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  </div>
+</nav>
+<div id="scrim" hidden=""></div>
+
+<div id="search" hidden="">
+  <div class="s-box" role="dialog" aria-modal="true" aria-label="Search treks">
+    <div class="s-top">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <input id="sInput" type="search" placeholder="Search treks — Everest, Poon Hill, easy…" autocomplete="off" aria-label="Search treks">
+      <button class="s-esc" id="sClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="s-res" id="sRes" role="listbox" aria-label="Results"></div>
+  </div>
+</div>
+
+<main id="main">
+  <header class="phead">
+    <div class="wrap-wide">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>›</span><span>Packages</span>
+      </nav>
+      <p class="eyebrow">All trips</p>
+      <h1>Trekking packages in Nepal.</h1>
+      <p>Seven routes, from an easy four-day sunrise walk to a sixteen-day circuit over a 5,106 m pass. Every price includes permits, lodging, guide and porters.</p>
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="wrap-wide">
+      <div class="filters">
+        <div class="fgroup">
+          <h3>Region</h3>
+          <div class="chips" id="fRegion">
+            <button class="chip" data-v="all" aria-pressed="true">All</button>
+            <button class="chip" data-v="everest" aria-pressed="false">Everest</button>
+            <button class="chip" data-v="annapurna" aria-pressed="false">Annapurna</button>
+            <button class="chip" data-v="manaslu" aria-pressed="false">Manaslu</button>
+            <button class="chip" data-v="mustang" aria-pressed="false">Mustang</button>
+          </div>
+        </div>
+        <div class="fgroup">
+          <h3>Difficulty</h3>
+          <div class="chips" id="fGrade">
+            <button class="chip" data-v="all" aria-pressed="true">Any</button>
+            <button class="chip" data-v="easy" aria-pressed="false">Easy</button>
+            <button class="chip" data-v="moderate" aria-pressed="false">Moderate</button>
+            <button class="chip" data-v="challenging" aria-pressed="false">Challenging</button>
+          </div>
+        </div>
+        <p class="count" id="count" aria-live="polite">7 trips</p>
+      </div>
+
+      <div class="pkg-grid reveal in" id="grid">
+  <a class="pkg" href="../treks/everest-base-camp-trek.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/ebc.jpg" alt="Ice pinnacles of the Khumbu Glacier on the Everest Base Camp trek" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag moderate">Moderate</span>
+      </div>
+      <span class="days">13 Nights · 14 Days</span>
+    </div>
+    <div class="body">
+      <h3>Everest Base Camp Trek</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>1,650</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/luxury-namche-heli-ebc.html">
+    <div class="shotwrap">
+      <img src="../assets/img/stills/band-summit.jpg" alt="Aerial view of the summit of Everest above the clouds" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag moderate">Moderate</span>
+      </div>
+      <span class="days">8 Nights · 9 Days</span>
+    </div>
+    <div class="body">
+      <h3>Luxury Namche Trek &amp; EBC Helicopter</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>3,780</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/luxury-everest-base-camp-trek.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/gorakshep.jpg" alt="The frozen lakebed at Gorak Shep beneath Nuptse" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag moderate">Moderate</span>
+      </div>
+      <span class="days">10 Nights · 11 Days</span>
+    </div>
+    <div class="body">
+      <h3>Luxury Everest Base Camp Trek</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>3,880</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/annapurna-base-camp-trek.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/annapurna.jpg" alt="Snow peaks above the Annapurna Sanctuary" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag moderate">Moderate</span>
+      </div>
+      <span class="days">11 Days</span>
+    </div>
+    <div class="body">
+      <h3>Annapurna Base Camp Trek</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>830</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/ghorepani-poon-hill-trek.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/poonhill.jpg" alt="Sunrise from Poon Hill above Ghorepani" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag easy">Easy</span>
+      </div>
+      <span class="days">7 Nights · 8 Days</span>
+    </div>
+    <div class="body">
+      <h3>Ghorepani Poon Hill Trek</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>620</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/manaslu-circuit-trek.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/manaslu.jpg" alt="Samdo village on the Manaslu circuit" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag challenging">Challenging</span>
+      </div>
+      <span class="days">15 Nights · 16 Days</span>
+    </div>
+    <div class="body">
+      <h3>Manaslu Circuit Trek</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>1,390</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+  <a class="pkg" href="../treks/upper-mustang-jeep-tour.html">
+    <div class="shotwrap">
+      <img src="../assets/img/treks/mustang.jpg" alt="The walled city of Lo Manthang in Upper Mustang" loading="lazy" width="1200" height="800">
+      <div class="tags">
+        <span class="tag">Nepal</span>
+        <span class="tag easy">Easy</span>
+      </div>
+      <span class="days">12 Nights · 13 Days</span>
+    </div>
+    <div class="body">
+      <h3>Upper Mustang Jeep Tour</h3>
+      <div class="foot">
+        <div>
+          <span class="from">Starting from</span>
+          <span class="price"><sup>$</sup>2,020</span>
+        </div>
+        <span class="go">Explore
+          <svg width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true">
+            <path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a></div>
+      <div class="empty" id="empty" hidden="">
+        <h3>No trips match that combination.</h3>
+        <p>Try widening the filters — or <a href="../contact/index.html">tell us what you're after</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)">
+    <div class="wrap-wide">
+      <div class="shead"><div>
+        <p class="eyebrow">Side by side</p>
+        <h2>Compare every trek.</h2>
+        <p>All seven routes on one screen — duration, maximum altitude, difficulty and price. Sort by any column.</p>
+      </div></div>
+      <div class="compare-wrap">
+        <table class="compare" id="cmp">
+          <thead>
+            <tr>
+              <th class="nm"><button class="sortbtn" data-k="title" aria-sort="none">Trek</button></th>
+              <th><button class="sortbtn" data-k="region" aria-sort="none">Region</button></th>
+              <th><button class="sortbtn" data-k="days" aria-sort="none">Days</button></th>
+              <th><button class="sortbtn" data-k="max" aria-sort="none">Max altitude</button></th>
+              <th><button class="sortbtn" data-k="gradeRank" aria-sort="none">Difficulty</button></th>
+              <th><button class="sortbtn on" data-k="price" aria-sort="ascending">From</button></th>
+            </tr>
+          </thead>
+          <tbody id="cmpBody">
+      <tr>
+        <td class="nm"><a href="detail.html?trek=ghorepani-poon-hill-trek">Ghorepani Poon Hill Trek</a></td>
+        <td>Annapurna</td>
+        <td class="num">8</td>
+        <td class="num">3,210 m</td>
+        <td><span class="tag easy">Easy</span></td>
+        <td class="pr">$620</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=annapurna-base-camp-trek">Annapurna Base Camp Trek</a></td>
+        <td>Annapurna</td>
+        <td class="num">11</td>
+        <td class="num">4,130 m</td>
+        <td><span class="tag moderate">Moderate</span></td>
+        <td class="pr">$830</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=manaslu-circuit-trek">Manaslu Circuit Trek</a></td>
+        <td>Manaslu</td>
+        <td class="num">16</td>
+        <td class="num">5,106 m</td>
+        <td><span class="tag challenging">Challenging</span></td>
+        <td class="pr">$1,390</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=everest-base-camp-trek">Everest Base Camp Trek</a></td>
+        <td>Everest</td>
+        <td class="num">14</td>
+        <td class="num">5,364 m</td>
+        <td><span class="tag moderate">Moderate</span></td>
+        <td class="pr">$1,650</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=upper-mustang-jeep-tour">Upper Mustang Jeep Tour</a></td>
+        <td>Mustang</td>
+        <td class="num">13</td>
+        <td class="num">3,840 m</td>
+        <td><span class="tag easy">Easy</span></td>
+        <td class="pr">$2,020</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=luxury-namche-heli-ebc">Luxury Namche Trek &amp; EBC Helicopter</a></td>
+        <td>Everest</td>
+        <td class="num">9</td>
+        <td class="num">5,364 m</td>
+        <td><span class="tag moderate">Moderate</span></td>
+        <td class="pr">$3,780</td>
+      </tr>
+      <tr>
+        <td class="nm"><a href="detail.html?trek=luxury-everest-base-camp-trek">Luxury Everest Base Camp Trek</a></td>
+        <td>Everest</td>
+        <td class="num">11</td>
+        <td class="num">5,545 m</td>
+        <td><span class="tag moderate">Moderate</span></td>
+        <td class="pr">$3,880</td>
+      </tr></tbody>
+        </table>
+      </div>
+      <p class="scroll-hint">Scroll the table sideways on a narrow screen.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap" style="text-align:center">
+      <p class="eyebrow">Not sure which one</p>
+      <h2 style="font-size:clamp(28px,4.2vw,46px);margin:14px 0 0">Tell us the constraint, we'll pick the trek.</h2>
+      <p style="color:var(--ink-2);max-width:48ch;margin:20px auto 30px">Two weeks or one? Never been above 3,000 m? Travelling with kids, or in the monsoon? Those answers narrow it down faster than any filter.</p>
+      <a class="btn" href="../contact/index.html">Ask us</a>
+      <a class="btn ghost" href="../guides/index.html" style="margin-left:10px">Read the guides</a>
+    </div>
+  </section>
+</main>
+
+
+<footer id="foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="f-brand">
+        <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true" width="40" height="40">
+          <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+          <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+        </svg>
+        <p>Small-group trekking in Nepal, led by licensed guides from the
+           regions we walk through. Permits, lodging and porters included.</p>
+        <a class="btn light" href="../contact/index.html">Plan a trip <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+      <div>
+        <h4>Treks</h4>
+        <ul>
+          <li><a href="../treks/everest-base-camp-trek.html">Everest Base Camp Trek</a></li><li><a href="../treks/luxury-namche-heli-ebc.html">Luxury Namche Trek &amp; EBC Helicopter</a></li><li><a href="../treks/luxury-everest-base-camp-trek.html">Luxury Everest Base Camp Trek</a></li><li><a href="../treks/annapurna-base-camp-trek.html">Annapurna Base Camp Trek</a></li><li><a href="../treks/ghorepani-poon-hill-trek.html">Ghorepani Poon Hill Trek</a></li>
+          <li><a href="../treks/index.html">All 7 treks</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">Altitude and acclimatisation</a></li><li><a href="../guides/packing-list.html">What to actually pack</a></li><li><a href="../guides/best-time-to-trek.html">The best time to trek in Nepal</a></li><li><a href="../guides/permits-and-costs.html">Permits, fees and what a trek really costs</a></li>
+          <li><a href="../treks/everest-base-camp.html">Walk Everest Base Camp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about/index.html">About us</a></li>
+          <li><a href="../about/responsible-travel.html">Responsible travel</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+          <li><a href="../legal/terms.html">Booking terms</a></li>
+          <li><a href="../legal/privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>Thamel, Kathmandu, Nepal</li>
+        </ul>
+        <h4 style="margin-top:24px">Seasons</h4>
+        <ul>
+          <li>Spring · March – May</li>
+          <li>Autumn · September – November</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year="">2026</span> Trek Nepal — demo concept by BrandAid. Not an operating travel company.</span>
+      <span>Photography credited on the trek guide · CC BY / CC BY-SA</span>
+    </div>
+  </div>
+</footer>
+
+<script>window.SITE_PREFIX = "../";</script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+(function(){
+  const grid  = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  const count = document.getElementById("count");
+  const q = new URLSearchParams(location.search);
+  const state = { region:(q.get("region")||"all").toLowerCase(),
+                  grade:(q.get("grade")||"all").toLowerCase() };
+
+  function paintChips(id, val){
+    document.querySelectorAll("#"+id+" .chip").forEach(c=>{
+      c.setAttribute("aria-pressed", c.dataset.v === val ? "true" : "false");
+    });
+  }
+  function render(){
+    const list = PACKAGES.filter(p =>
+      (state.region === "all" || p.region === state.region) &&
+      (state.grade  === "all" || p.grade.toLowerCase() === state.grade));
+
+    grid.innerHTML = list.map(p => pkgCard(p)).join("");
+    empty.hidden = list.length > 0;
+    count.textContent = list.length + (list.length === 1 ? " trip" : " trips");
+
+    const u = new URL(location);
+    state.region === "all" ? u.searchParams.delete("region") : u.searchParams.set("region", state.region);
+    state.grade  === "all" ? u.searchParams.delete("grade")  : u.searchParams.set("grade",  state.grade);
+    history.replaceState(null, "", u);
+  }
+  function wire(id, key){
+    document.getElementById(id).addEventListener("click", e=>{
+      const b = e.target.closest(".chip"); if(!b) return;
+      state[key] = b.dataset.v;
+      paintChips(id, b.dataset.v);
+      render();
+    });
+  }
+  /* ---- comparison table ---- */
+  const RANK = { easy:1, moderate:2, challenging:3 };
+  const rows = PACKAGES.map(p => ({...p, gradeRank: RANK[p.grade.toLowerCase()] || 9 }));
+  let sortKey = "price", sortDir = 1;
+
+  function paintTable(){
+    const sorted = [...rows].sort((a,b)=>{
+      const x = a[sortKey], y = b[sortKey];
+      if(typeof x === "string") return x.localeCompare(y) * sortDir;
+      return (x - y) * sortDir;
+    });
+    document.getElementById("cmpBody").innerHTML = sorted.map(p => `
+      <tr>
+        <td class="nm"><a href="detail.html?trek=${p.slug}">${p.short || p.title}</a></td>
+        <td>${p.region.charAt(0).toUpperCase() + p.region.slice(1)}</td>
+        <td class="num">${p.days}</td>
+        <td class="num">${p.max.toLocaleString()} m</td>
+        <td><span class="tag ${p.grade.toLowerCase()}">${p.grade}</span></td>
+        <td class="pr">$${p.price.toLocaleString()}</td>
+      </tr>`).join("");
+    document.querySelectorAll(".sortbtn").forEach(b=>{
+      const on = b.dataset.k === sortKey;
+      b.setAttribute("aria-sort", on ? (sortDir === 1 ? "ascending" : "descending") : "none");
+      b.classList.toggle("on", on);
+    });
+  }
+  document.getElementById("cmp").addEventListener("click", e=>{
+    const b = e.target.closest(".sortbtn"); if(!b) return;
+    if(sortKey === b.dataset.k) sortDir *= -1; else { sortKey = b.dataset.k; sortDir = 1; }
+    paintTable();
+  });
+  paintTable();
+
+  wire("fRegion","region"); wire("fGrade","grade");
+  paintChips("fRegion", state.region); paintChips("fGrade", state.grade);
+  render();
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

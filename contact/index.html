@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan a trip — Trek Nepal</title>
+<meta name="description" content="Tell us when you're free and which trek you're interested in. We reply within 24 hours.">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+.clay{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,5vw,70px);align-items:start}
+form{display:grid;gap:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:flex;flex-direction:column;gap:9px}
+label{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted)}
+input,select,textarea{
+  font:400 15px/1.5 ui-sans-serif,-apple-system,system-ui,sans-serif;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);padding:14px 15px;min-height:50px;
+  width:100%;border-radius:0;transition:border-color .25s ease,box-shadow .25s ease;
+  -webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1.5 6 6.5 11 1.5' stroke='%235c6972' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat;background-position:right 15px center;padding-right:42px}
+textarea{min-height:140px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ember);
+  box-shadow:0 0 0 3px rgba(193,68,14,.13)}
+input:user-invalid,textarea:user-invalid{border-color:#b3261e}
+.err{font-size:12px;color:#b3261e;min-height:0}
+input:user-invalid ~ .err::before,textarea:user-invalid ~ .err::before{content:attr(data-msg)}
+.consent{display:flex;gap:13px;align-items:flex-start;font-size:14px;color:var(--ink-2);
+  min-height:48px;padding:6px 0;cursor:pointer}
+.consent input{width:24px;height:24px;min-height:24px;flex:none;margin-top:1px;
+  accent-color:var(--ember);cursor:pointer}
+.aside{background:var(--paper-2);border:1px solid var(--line);padding:30px}
+.aside h3{font-size:21px;margin:0 0 16px}
+.aside dl{margin:0 0 26px}
+.aside dt{font:600 10px/1 ui-sans-serif,sans-serif;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.aside dd{margin:0 0 18px;font-size:15px;color:var(--ink)}
+.aside a{color:var(--ember)}
+.ok{display:none;background:#eef6f0;border:1px solid #b9dcc4;padding:26px;text-align:center}
+.ok.show{display:block}
+.ok h3{font-size:23px;margin:0 0 10px}
+.ok p{margin:0;color:var(--ink-2);font-size:15px}
+form.sent{display:none}
+@media (max-width:900px){ .clay{grid-template-columns:1fr} .row2{grid-template-columns:1fr} }
+</style>
+<meta property="og:title" content="Plan a trip — Trek Nepal"><meta property="og:description" content="Tell us when you're free and which trek you're interested in. We reply within 24 hours."><meta property="og:type" content="website"><meta property="og:url" content="https://anandacdr.github.io/trek-nepal/contact/index.html"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://anandacdr.github.io/trek-nepal/contact/index.html"><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contact",
+   "item": "https://example.com/contact/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Tell us what you're after.",
+   "item": "https://example.com/contact/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contact",
+   "item": "https://example.com/contact/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Tell us what you're after.",
+   "item": "https://example.com/contact/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://example.com/#org",
+ "name": "Trek Nepal",
+ "url": "https://example.com/",
+ "logo": "https://example.com/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://example.com/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contact",
+   "item": "https://example.com/contact/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Tell us what you're after.",
+   "item": "https://example.com/contact/index.html"
+  }
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "TravelAgency",
+ "@id": "https://anandacdr.github.io/trek-nepal/#org",
+ "name": "Trek Nepal",
+ "url": "https://anandacdr.github.io/trek-nepal/",
+ "logo": "https://anandacdr.github.io/trek-nepal/assets/img/favicon.svg",
+ "description": "Small-group trekking in Nepal led by licensed local guides. Permits, teahouse lodging and porters included.",
+ "areaServed": [
+  {
+   "@type": "Country",
+   "name": "Nepal"
+  }
+ ],
+ "address": {
+  "@type": "PostalAddress",
+  "addressLocality": "Kathmandu",
+  "addressRegion": "Bagmati",
+  "addressCountry": "NP"
+ },
+ "email": "hello@example.com",
+ "knowsAbout": [
+  "Everest Base Camp trek",
+  "Annapurna Base Camp trek",
+  "Manaslu Circuit",
+  "Upper Mustang",
+  "high-altitude acclimatisation",
+  "trekking permits in Nepal"
+ ]
+}</script><script type="application/ld+json">{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://anandacdr.github.io/trek-nepal/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contact",
+   "item": "https://anandacdr.github.io/trek-nepal/contact/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Tell us what you're after.",
+   "item": "https://anandacdr.github.io/trek-nepal/contact/index.html"
+  }
+ ]
+}</script></head>
+<body class="has-solid-nav">
+
+<a class="skip" href="#main">Skip to content</a>
+<nav id="nav" aria-label="Main">
+  <a class="brand" href="../index.html" aria-label="Trek Nepal — home">
+    <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+      <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+      <path d="M15.5 14.5 L18.4 19.4 L12.7 19.4 Z" fill="#b5400d" opacity=".55"></path>
+    </svg>
+    <span class="wm">TREK<span>NEPAL</span><small>Himalayan trekking &amp; tours</small></span>
+  </a>
+
+  <ul class="menu" id="menu">
+    <li class="m-lbl" aria-hidden="true">Menu</li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Treks <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop mega">
+        <div class="pad">
+          <div class="mgrid">
+            <div>
+              <h4>By region</h4>
+              
+    <a class="mi" href="../treks/index.html?region=everest">
+      <span class="mi-t">Everest &amp; Khumbu<em>3 trips</em></span>
+      <span class="mi-n">Base Camp, Namche, Kala Patthar</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=annapurna">
+      <span class="mi-t">Annapurna<em>2 trips</em></span>
+      <span class="mi-n">Sanctuary, Poon Hill, Ghandruk</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=manaslu">
+      <span class="mi-t">Manaslu<em>1 trip</em></span>
+      <span class="mi-n">Larkya La, restricted area</span>
+    </a>
+              
+    <a class="mi" href="../treks/index.html?region=mustang">
+      <span class="mi-t">Upper Mustang<em>1 trip</em></span>
+      <span class="mi-n">Lo Manthang, sky caves</span>
+    </a>
+            </div>
+            <div>
+              <h4>By difficulty</h4>
+              <a class="mi" href="../treks/index.html?grade=easy">
+                <span class="mi-t">Easy<em>2 trips</em></span>
+                <span class="mi-n">Short days, low altitude</span></a>
+              <a class="mi" href="../treks/index.html?grade=moderate">
+                <span class="mi-t">Moderate<em>4 trips</em></span>
+                <span class="mi-n">Full days above 4,000 m</span></a>
+              <a class="mi" href="../treks/index.html?grade=challenging">
+                <span class="mi-t">Challenging<em>1 trip</em></span>
+                <span class="mi-n">High passes, remote country</span></a>
+              <a class="mi all" href="../treks/index.html">
+                <span class="mi-t">View all 7 treks <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></a>
+            </div>
+          </div>
+        </div>
+        
+        <a class="feat-card" href="../treks/everest-base-camp-trek.html">
+          <img src="../assets/img/treks/ebc.jpg" alt="" loading="lazy" width="1200" height="800">
+          <span class="fc-in">
+            <em>Most booked</em>
+            <b>Everest Base Camp Trek</b>
+            <span class="fc-m">13 Nights · 14 Days · from $1,650</span>
+          </span>
+        </a>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../treks/index.html" aria-expanded="false" aria-haspopup="true">Luxury <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../treks/luxury-namche-heli-ebc.html">
+            <span class="mi-t">Helicopter tours<em></em></span>
+            <span class="mi-n">Fly to Base Camp, land at Kala Patthar</span></a></li>
+          <li><a href="../treks/luxury-everest-base-camp-trek.html">
+            <span class="mi-t">Luxury Everest trek<em></em></span>
+            <span class="mi-n">Best lodges, helicopter return</span></a></li>
+          <li><a href="../treks/upper-mustang-jeep-tour.html">
+            <span class="mi-t">Private jeep tours<em></em></span>
+            <span class="mi-n">Upper Mustang, no walking days</span></a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li data-drop="">
+      <a href="../guides/index.html" aria-expanded="false" aria-haspopup="true">Guides <svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <div class="drop">
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">
+            <span class="mi-t">Altitude and acclimatisation<em>7 min</em></span>
+            <span class="mi-n">Health</span></a></li><li><a href="../guides/packing-list.html">
+            <span class="mi-t">What to actually pack<em>9 min</em></span>
+            <span class="mi-n">Preparation</span></a></li><li><a href="../guides/best-time-to-trek.html">
+            <span class="mi-t">The best time to trek in Nepal<em>6 min</em></span>
+            <span class="mi-n">Planning</span></a></li><li><a href="../guides/permits-and-costs.html">
+            <span class="mi-t">Permits, fees and what a trek really costs<em>8 min</em></span>
+            <span class="mi-n">Money</span></a></li>
+          <li><a class="mi all" href="../treks/everest-base-camp.html">
+            <span class="mi-t">Walk Everest Base Camp <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <span class="mi-n">Interactive route guide</span></a></li>
+        </ul>
+      </div>
+    </li>
+    <li><a href="../about/index.html">About</a></li>
+    <li><a href="../contact/index.html" aria-current="page">Contact</a></li>
+
+    <li class="m-cta"><a class="plan" href="../contact/index.html">Plan a trip</a></li>
+  </ul>
+
+  <div class="navtools">
+    <button class="icobtn" id="searchBtn" aria-label="Search treks" aria-expanded="false">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <a class="plan d-only" href="../contact/index.html">Plan a trip</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  </div>
+</nav>
+<div id="scrim" hidden=""></div>
+
+<div id="search" hidden="">
+  <div class="s-box" role="dialog" aria-modal="true" aria-label="Search treks">
+    <div class="s-top">
+      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M13.6 13.6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <input id="sInput" type="search" placeholder="Search treks — Everest, Poon Hill, easy…" autocomplete="off" aria-label="Search treks">
+      <button class="s-esc" id="sClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="s-res" id="sRes" role="listbox" aria-label="Results"></div>
+  </div>
+</div>
+
+<main id="main">
+  <header class="phead">
+    <div class="wrap-wide">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span>›</span><span>Plan a trip</span>
+      </nav>
+      <p class="eyebrow">Plan a trip</p>
+      <h1>Tell us what you're after.</h1>
+      <p>No deposit to enquire, and no sales call unless you ask for one. We'll come back within 24 hours with dates and an honest opinion on whether the trek suits you.</p>
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="wrap-wide clay">
+      <div>
+        <div class="ok" id="ok" role="status">
+          <h3>Thanks — that's with us.</h3>
+          <p>This is a demo, so nothing was actually sent. On a live site this would land in your inbox and CRM within seconds.</p>
+        </div>
+
+        <form id="form" novalidate="">
+          <div class="row2">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" required="" autocomplete="name" placeholder="Jane Sherpa">
+              <span class="err" data-msg="Please tell us your name."></span>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required="" autocomplete="email" placeholder="you@example.com">
+              <span class="err" data-msg="Please enter a valid email address."></span>
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="trek">Which trek</label>
+              <select id="trek" name="trek"><option value="">Not sure yet</option><option value="everest-base-camp-trek">Everest Base Camp Trek — $1,650</option><option value="luxury-namche-heli-ebc">Luxury Namche Trek &amp; EBC Helicopter — $3,780</option><option value="luxury-everest-base-camp-trek">Luxury Everest Base Camp Trek — $3,880</option><option value="annapurna-base-camp-trek">Annapurna Base Camp Trek — $830</option><option value="ghorepani-poon-hill-trek">Ghorepani Poon Hill Trek — $620</option><option value="manaslu-circuit-trek">Manaslu Circuit Trek — $1,390</option><option value="upper-mustang-jeep-tour">Upper Mustang Jeep Tour — $2,020</option></select>
+            </div>
+            <div class="field">
+              <label for="when">Roughly when</label>
+              <input id="when" name="when" type="month">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="people">Group size</label>
+              <select id="people" name="people">
+                <option>1</option><option selected="">2</option><option>3–4</option>
+                <option>5–8</option><option>9+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fitness">Walking experience</label>
+              <select id="fitness" name="fitness">
+                <option>First multi-day trek</option>
+                <option selected="">Some hill walking</option>
+                <option>Regular trekker</option>
+                <option>Previous high altitude</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="msg">Anything we should know</label>
+            <textarea id="msg" name="msg" placeholder="Dietary needs, knees, a fixed return flight, a birthday on the trail…"></textarea>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" required="">
+            <span>I'm happy for Trek Nepal to email me about this enquiry.</span>
+          </label>
+          <span class="err" id="consentErr"></span>
+
+          <div><button class="btn" type="submit">Send enquiry</button></div>
+        </form>
+      </div>
+
+      <aside class="aside">
+        <h3>Or reach us directly</h3>
+        <dl>
+          <dt>Email</dt><dd><a class="inline-link" href="mailto:hello@example.com">hello@example.com</a></dd>
+          <dt>Office</dt><dd>Thamel, Kathmandu, Nepal</dd>
+          <dt>Trekking seasons</dt><dd>Spring: March – May<br>Autumn: September – November</dd>
+          <dt>Response time</dt><dd>Within 24 hours, every day</dd>
+        </dl>
+        <p style="font-size:13px;color:var(--muted);margin:0">
+          This is a demonstration site. The form validates and responds, but sends nothing —
+          wire it to your own inbox, Formspree or CRM before going live.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line)">
+    <div class="wrap-wide">
+      <div class="shead"><div>
+        <p class="eyebrow">What happens next</p>
+        <h2>No sales call unless you ask for one.</h2>
+      </div></div>
+      <div class="steps reveal in">
+        <article>
+          <h3>We read it properly</h3>
+          <p>A person reads your enquiry — not an autoresponder. If your dates clash with the season, or the trek you've picked doesn't suit your experience, we'll say so in the first reply.</p>
+        </article>
+        <article>
+          <h3>You get a real itinerary</h3>
+          <p>Day by day, with acclimatisation built in, a full price with nothing held back, and what's included and excluded written down. Within 24 hours.</p>
+        </article>
+        <article>
+          <h3>You decide, unhurried</h3>
+          <p>No deposit to enquire and no pressure to commit. Ask as many questions as you like — most people take a few weeks, and that's completely normal.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer id="foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="f-brand">
+        <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true" width="40" height="40">
+          <rect width="40" height="40" rx="8" fill="#b5400d"></rect>
+          <path d="M7 29 L15.5 14.5 L20.5 22.5 L25 15.5 L33 29 Z" fill="#fff"></path>
+        </svg>
+        <p>Small-group trekking in Nepal, led by licensed guides from the
+           regions we walk through. Permits, lodging and porters included.</p>
+        <a class="btn light" href="../contact/index.html">Plan a trip <svg class="arw" width="15" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1L14 4.5 10.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+      <div>
+        <h4>Treks</h4>
+        <ul>
+          <li><a href="../treks/everest-base-camp-trek.html">Everest Base Camp Trek</a></li><li><a href="../treks/luxury-namche-heli-ebc.html">Luxury Namche Trek &amp; EBC Helicopter</a></li><li><a href="../treks/luxury-everest-base-camp-trek.html">Luxury Everest Base Camp Trek</a></li><li><a href="../treks/annapurna-base-camp-trek.html">Annapurna Base Camp Trek</a></li><li><a href="../treks/ghorepani-poon-hill-trek.html">Ghorepani Poon Hill Trek</a></li>
+          <li><a href="../treks/index.html">All 7 treks</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="../guides/altitude-and-acclimatisation.html">Altitude and acclimatisation</a></li><li><a href="../guides/packing-list.html">What to actually pack</a></li><li><a href="../guides/best-time-to-trek.html">The best time to trek in Nepal</a></li><li><a href="../guides/permits-and-costs.html">Permits, fees and what a trek really costs</a></li>
+          <li><a href="../treks/everest-base-camp.html">Walk Everest Base Camp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about/index.html">About us</a></li>
+          <li><a href="../about/responsible-travel.html">Responsible travel</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+          <li><a href="../legal/terms.html">Booking terms</a></li>
+          <li><a href="../legal/privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>Thamel, Kathmandu, Nepal</li>
+        </ul>
+        <h4 style="margin-top:24px">Seasons</h4>
+        <ul>
+          <li>Spring · March – May</li>
+          <li>Autumn · September – November</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span data-year="">2026</span> Trek Nepal — demo concept by BrandAid. Not an operating travel company.</span>
+      <span>Photography credited on the trek guide · CC BY / CC BY-SA</span>
+    </div>
+  </div>
+</footer>
+
+<script>window.SITE_PREFIX = "../";</script>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+(function(){
+  // fill the trek dropdown from the shared data, preselect from ?trek=
+  const sel = document.getElementById("trek");
+  const want = new URLSearchParams(location.search).get("trek");
+  // rebuilt, not appended — this script runs at prerender AND in the browser
+  sel.innerHTML = '<option value="">Not sure yet</option>' +
+    PACKAGES.map(p =>
+      `<option value="${p.slug}"${p.slug === want ? " selected" : ""}>` +
+      `${p.short || p.title} — ${money(p.price)}</option>`).join("");
+
+  const form = document.getElementById("form");
+  const ok   = document.getElementById("ok");
+  const cErr = document.getElementById("consentErr");
+
+  form.addEventListener("submit", e=>{
+    e.preventDefault();
+    cErr.textContent = document.getElementById("consent").checked ? "" : "Please tick the box so we can reply.";
+    if(!form.checkValidity()){
+      form.querySelector(":invalid")?.focus();
+      form.classList.add("touched");
+      return;
+    }
+    form.classList.add("sent");
+    ok.classList.add("show");
+    ok.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Original camera / stock masters — far too large to deploy.
+# Web-ready derivatives live in assets/video and assets/img.
+_source/
+
+# Editor + tooling
+node_modules/
+*.log
+.vscode/
+.idea/
